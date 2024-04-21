@@ -1,0 +1,1 @@
+const chave = 10
