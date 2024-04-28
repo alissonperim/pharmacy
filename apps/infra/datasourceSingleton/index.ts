@@ -16,13 +16,13 @@ export class DataSourceSingleton {
     }
 
     public static getRepositoy<T>(E: EntityTarget<T>): Repository<T> {
-        return this.getInstance().getDbInstance().getRepository(E)
+        return this.getInstance().dataSource.getRepository(E)
     }
 
-    public getDbInstance(): DataSource {
+    public async initialize(): Promise<DataSource> {
         this.dataSource = AppDataSource()
         if (!this.dataSource.isInitialized) {
-            this.dataSource.initialize().then(() => console.log('connected again?'))
+            await this.dataSource.initialize().then(() => console.log('Database connected'))
         }
 
         return this.dataSource

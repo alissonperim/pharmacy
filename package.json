@@ -41,7 +41,9 @@
     "@types/node": "^20.12.7",
     "express": "^4.19.2",
     "pg": "^8.11.5",
+    "reflect-metadata": "^0.2.2",
     "tsx": "^4.7.2",
+    "tsyringe": "^4.8.0",
     "typeorm": "^0.3.12"
   }
 }
