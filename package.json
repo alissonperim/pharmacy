@@ -4,13 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "tsx apps/server.ts",
+    "comment": "Ao startar migration:generate deve ser adicionado o path de onde será salvo a migration ex: ./src/data/migrations/NomeDaMigration",
+    "typeorm": "npx typeorm-ts-node-commonjs -d apps/infra/data/datasource.ts",
+    "migration:generate": "npm run typeorm -- migration:generate apps/infra/migrations/Migration --timestamp",
+    "migration:run": "npm run typeorm migration:run",
+    "migration:revert": "npm run typeorm migration:revert"
   },
   "keywords": [],
-  "type": "module",
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/express": "^4.17.21",
     "@types/jest": "^29.5.12",
     "@types/typescript": "^2.0.0",
     "@typescript-eslint/parser": "^7.7.0",
@@ -24,10 +30,18 @@
     "globals": "^15.0.0",
     "jest": "^29.7.0",
     "jsonc-eslint-parser": "^2.4.0",
+    "node-dev": "^8.0.0",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "tsc-alias": "^1.8.8",
     "tsconfig-paths": "^4.2.0",
     "typescript-eslint": "^7.7.0"
   },
   "dependencies": {
-    "typeorm": "^0.3.20"
+    "@types/node": "^20.12.7",
+    "express": "^4.19.2",
+    "pg": "^8.11.5",
+    "tsx": "^4.7.2",
+    "typeorm": "^0.3.12"
   }
 }
