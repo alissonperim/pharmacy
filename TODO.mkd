@@ -1,4 +1,14 @@
 28-04-2024
 
 [X] - Criar design pattern Singleton para realizar a conexão e compartilhas a instância do banco de dados.
-[] - Criar repositório de usuário
+[X] - Criar repositório de usuário
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+05-05-2024
+## Descrição de como funcionará o convênio ##
+
+- O convênio terá dia exato para fechar as faturas, esse dia deve ser um parâmetro cadastrado na company `invoiceCloseDay`. Haverá uma CRON que será executada todos os dias verificando a data de fechamento de fatura de todas empresas cadastradas, a CRON executará a listagem, disparar um evento para cada fatura a ser criada.
+- O próprio convênio é responsável de enviar um arquivo à drogaria contendo dados do funcionário como nome completo, cpf, endereço, telefone de contato, limite de convênio e filiados. Cada um dos conveniados deverá ter um cartão próprio onde servirá para registrar que a compra foi efetuada, cada filiado de conveniado também terá seu próprio cartão onde constará seus dados pessoais. Cada cartão terá uma "assinatura" única e reconhecimento por senha.
+- A empresa será responsável por abater do funcionário o valor de compra efetuado pelo funcionário e realizar o pagemento através do boleto que será enviado na data de fechamento de fatura.
+- As empresas interessadas em se tornarem conveniadas deverão assinar contrato onde se responsabilizam por abater o valor faturado pelo funcionário junto à drogaria e realizar o pagamento em dias do boleto de fechamento de fatura.

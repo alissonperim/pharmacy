@@ -47,7 +47,7 @@ export class PersonalData extends BaseDomain {
     )
     birthDate!: Date
 
-    @OneToOne(() => Address, { eager: true })
+    @OneToOne(() => Address, { eager: true, nullable: true })
     @JoinColumn()
     address?: Relation<Address>
 }
