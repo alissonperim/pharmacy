@@ -1,5 +1,5 @@
 import { randomUUID as uuid } from 'crypto'
-import { Column, CreateDateColumn, DeleteDateColumn, PrimaryColumn, UpdateDateColumn } from 'typeorm'
+import { BeforeInsert, Column, CreateDateColumn, DeleteDateColumn, PrimaryColumn, UpdateDateColumn } from 'typeorm'
 
 export class BaseDomain {
     @PrimaryColumn(
@@ -16,7 +16,6 @@ export class BaseDomain {
     @CreateDateColumn(
         {
             name: 'created_at',
-            default: new Date()
         }
     )
     createdAt!: Date
@@ -31,6 +30,7 @@ export class BaseDomain {
     @DeleteDateColumn(
         {
             name: 'deleted_at',
+            nullable: true,
         }
     )
     deletedAt?: Date
@@ -42,7 +42,7 @@ export class BaseDomain {
             length: 255,
         }
     )
-    createdBy!: string
+    createdBy?: string
 
     @Column(
         {
@@ -51,29 +51,24 @@ export class BaseDomain {
             length: 255,
         }
     )
-    updatedBy!: string
+    updatedBy?: string
 
     @Column(
         {
             name: 'deleted_by',
             type: 'varchar',
             length: 255,
+            nullable: true,
         }
     )
     deletedBy?: string
 
-    constructor(
-        id: string,
-        deletedAt: Date,
-        createdBy: string,
-        updatedBy: string,
-        deletedBy: string
-    ) {
-        if (!id) this.id = uuid()
-
-        this.deletedAt = deletedAt
-        this.createdBy = createdBy
-        this.updatedBy = updatedBy
-        this.deletedBy = deletedBy
+    @BeforeInsert()
+    generateData() {
+        const currentDate = new Date()
+        
+        this.id = uuid()
+        this.createdAt = currentDate
+        this.updatedAt = currentDate
     }
 }

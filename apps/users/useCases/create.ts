@@ -10,10 +10,8 @@ export class CreateUserUseCase implements ICreateUserUseCase {
         private repository: ICreateUserRepository
     ) {}
     async execute(params: Partial<User>): Promise<User> {
-        console.log(params)
         const user = await this.repository.create(params)
         console.log(user)
-
         return user
     }
 }

@@ -26,6 +26,7 @@ export class PersonalData extends BaseDomain {
             name: 'phone_number',
             type: 'varchar',
             length: 14,
+            unique: true,
         }
     )
     phoneNumber!: string
@@ -35,7 +36,8 @@ export class PersonalData extends BaseDomain {
             name: 'email',
             type: 'varchar',
             length: 120,
-        }
+            unique: true,
+        },
     )
     email!: string
 
