@@ -8,7 +8,7 @@ export enum Roles {
 }
 
 export interface User {
-    id: string
+    id?: string
     role: Roles[]
     name: string
     lastName: string
