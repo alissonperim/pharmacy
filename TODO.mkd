@@ -3,6 +3,10 @@
 [X] - Criar design pattern Singleton para realizar a conexão e compartilhas a instância do banco de dados.
 [X] - Criar repositório de usuário
 
+06-05-2024
+
+[] - Criar rotas get by id e update users
+
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 05-05-2024
