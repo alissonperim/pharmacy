@@ -1,5 +1,5 @@
-import { ICreateUserRepository } from '@users/contracts/repositories/user'
-import { ICreateUserUseCase } from '@users/contracts/useCases/create'
+import { ICreateUserRepository } from '@users/contracts/repositories'
+import { ICreateUserUseCase } from '@users/contracts/useCases'
 import { User } from '@users/domain/user'
 import { inject, injectable } from 'tsyringe'
 

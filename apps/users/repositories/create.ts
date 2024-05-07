@@ -1,6 +1,6 @@
 import { DataSourceSingleton } from '@infra/datasourceSingleton'
 import { auditableData } from '@shared/auditableData/auditableData'
-import { ICreateUserRepository } from '@users/contracts/repositories/user'
+import { ICreateUserRepository } from '@users/contracts/repositories'
 import { User } from '@users/domain/user'
 import { Repository } from 'typeorm'
 
