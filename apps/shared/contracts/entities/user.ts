@@ -9,14 +9,17 @@ export enum Roles {
 
 export interface User {
     id?: string
-    role: Roles[]
+    roles: Roles[]
     name: string
     lastName: string
     phoneNumber: string
     birthDate: Date
-    address: Address
+    address?: Address
     email: string
-    created_at: Date
-    updated_at: Date
-    deleted_at: Date
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date
+    createdBy: string
+    updatedBy: string
+    deletedBy: string
 }
