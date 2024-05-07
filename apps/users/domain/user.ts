@@ -2,8 +2,7 @@ import 'dotenv/config'
 import { Roles } from '@shared/contracts'
 import { PersonalData } from '@shared/domain'
 import { BeforeInsert, Column, Entity } from 'typeorm'
-import { DOMAIN } from '@shared/utils'
-import { nanoIdGenerator } from '@shared/domain/nanoIdGenerator'
+import { DOMAIN, nanoIdGenerator } from '@shared/utils'
 
 @Entity('users')
 export class User extends PersonalData {
