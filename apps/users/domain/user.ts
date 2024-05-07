@@ -1,6 +1,9 @@
-import { Roles } from '@shared/contracts/entities/user'
-import { PersonalData } from '@shared/domain/personalData'
-import { Column, Entity } from 'typeorm'
+import 'dotenv/config'
+import { Roles } from '@shared/contracts'
+import { PersonalData } from '@shared/domain'
+import { BeforeInsert, Column, Entity } from 'typeorm'
+import { DOMAIN } from '@shared/utils'
+import { nanoIdGenerator } from '@shared/domain/nanoIdGenerator'
 
 @Entity('users')
 export class User extends PersonalData {
@@ -13,4 +16,9 @@ export class User extends PersonalData {
         }
     )
     roles!: Roles[]
+
+    @BeforeInsert()
+    generateId() {
+        this.id =  nanoIdGenerator(DOMAIN.USER)
+    }
 }

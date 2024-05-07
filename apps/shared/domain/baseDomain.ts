@@ -1,11 +1,11 @@
-import { randomUUID as uuid } from 'crypto'
 import { BeforeInsert, Column, CreateDateColumn, DeleteDateColumn, PrimaryColumn, UpdateDateColumn } from 'typeorm'
 
 export class BaseDomain {
     @PrimaryColumn(
         {
             name: 'id',
-            type: 'uuid',
+            type: 'varchar',
+            length: 29,
             unique: true,
             nullable: false,
             primary: true,
@@ -67,7 +67,6 @@ export class BaseDomain {
     generateData() {
         const currentDate = new Date()
         
-        this.id = uuid()
         this.createdAt = currentDate
         this.updatedAt = currentDate
     }
