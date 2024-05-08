@@ -1,5 +1,7 @@
+import { auditableData } from '@shared/auditableData'
 import { BaseDomain } from '@shared/domain/baseDomain'
-import { Column, Entity } from 'typeorm'
+import { nanoIdGenerator, DOMAIN } from '@shared/utils'
+import { BeforeInsert, Column, Entity } from 'typeorm'
 
 @Entity('addresses')
 export class Address extends BaseDomain {
@@ -14,7 +16,7 @@ export class Address extends BaseDomain {
     @Column(
         {
             type: 'varchar',
-            length: 120,
+            length: 20,
         }
     )
     number!: string
@@ -22,7 +24,7 @@ export class Address extends BaseDomain {
     @Column(
         {
             type: 'varchar',
-            length: 80,
+            length: 120,
         }
     )
     neighborhood!: string
@@ -55,6 +57,7 @@ export class Address extends BaseDomain {
         {
             type: 'varchar',
             length: 9,
+            nullable: true,
         }
     )
     zipCode!: string
@@ -63,15 +66,16 @@ export class Address extends BaseDomain {
         {
             type: 'varchar',
             length: 120,
+            nullable: true,
         }
     )
     complement?: string
 
-    @Column(
-        {
-            type: 'varchar',
-            length: 120,
-        }
-    )
-    reference?: string
+    @BeforeInsert()
+    protected generateId() {
+        const { createdBy, updatedBy } = auditableData()
+        this.id = nanoIdGenerator(DOMAIN.ADDRESS)
+        this.createdBy = createdBy
+        this.updatedBy = updatedBy
+    }
 }

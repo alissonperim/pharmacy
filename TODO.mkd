@@ -7,6 +7,15 @@
 
 [] - Criar rotas get by id e update users
 
+07-05-2024
+
+[X] - Continuidade na rota update user
+[X] - Alterar migration
+[X] - Possibilitar criar usuário com e sem address
+[X] - Salvar address através de cascade no banco de dados.
+[] - Finalizar rota update user -> Entender como fazer validação do pathParams usando yup
+[] - Iniciar rota getById
+
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 05-05-2024

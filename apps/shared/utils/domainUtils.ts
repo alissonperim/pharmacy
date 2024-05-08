@@ -4,7 +4,8 @@ import { customAlphabet } from 'nanoid'
 const { CUSTOM_ALPHABET } = process.env	
 
 export const DOMAIN = {
-    USER: 'user'
+    USER: 'user',
+    ADDRESS: 'addr'
 } as const
 
 export const nanoIdGenerator = (domain: string): string => {

@@ -25,4 +25,4 @@ export const createUserSchema = yup.object().shape({
 }).noUnknown()
 
 
-export type createUserType = InferType<typeof createUserSchema>
+export type CreateUserRequestParams = InferType<typeof createUserSchema>

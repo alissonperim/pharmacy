@@ -7,7 +7,6 @@ import { Repository } from 'typeorm'
 export class CreateUserRepository implements ICreateUserRepository {
     private readonly context: Repository<User> = DataSourceSingleton.getRepositoy(User)
 
-    constructor() {}
     async create(user: Partial<User>): Promise<User> {
         const { createdBy, updatedBy } = auditableData()
         Object.assign(user, { createdBy, updatedBy })
