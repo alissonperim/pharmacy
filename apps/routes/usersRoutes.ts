@@ -6,5 +6,4 @@ const router = Router()
 
 router.use('/users', openDbConnection, usersRouter)
 
-
 export { router as apiRouter }

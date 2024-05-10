@@ -18,6 +18,12 @@
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+08-05-2024
+
+[] - Finalizar rota update user -> Entender como fazer validação do pathParams usando yup
+[] - Iniciar rota getById
+[] - Adicionar middleware de respostas http
+
 05-05-2024
 ## Descrição de como funcionará o convênio ##
 

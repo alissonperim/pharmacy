@@ -1,17 +1,28 @@
-export class HttpResponse {
-    constructor(public statusCode: number, public data: any) {}
+import { BaseException } from '@shared/exceptions/baseException'
+import { NextFunction, Request, Response } from 'express'
 
-    public static ok(data: unknown): HttpResponse {
-        return {
-            statusCode: 200,
-            data,
-        }
+export interface IHttpResponse {
+    statusCode: number
+    body?: unknown
+}
+
+export const HttpResponses = (_: Request, res: Response, next: NextFunction) => {
+    res.ok = (data: unknown) => {
+        res.status(200).json(data)
     }
 
-    public static created(data: unknown): HttpResponse {
-        return {
-            statusCode: 201,
-            data,
-        }
+    res.created = (data: unknown) => {
+        res.status(201).json(data)
     }
+
+    next()
+}
+
+export const HttpExceptions = (err, _: Request, res: Response, next: NextFunction) => {
+    if (err instanceof BaseException) {
+        res.status(err.statusCode).json({ message: err.message })
+        next()
+    }
+
+    res.status(500).json({ message: err.message })
 }

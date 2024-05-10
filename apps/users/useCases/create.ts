@@ -12,6 +12,7 @@ export class CreateUserUseCase implements ICreateUserUseCase {
         private repository: ICreateUserRepository
     ) {}
     async execute(params: CreateUserRequestParams): Promise<UserDomain> {
+
         const user = await this.repository.create(params)
         return userDto(user)
     }
