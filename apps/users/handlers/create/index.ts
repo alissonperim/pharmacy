@@ -1,11 +1,15 @@
 import { CreateUserUseCase } from '@users/useCases/create'
-import { Request, Response } from 'express'
+import { NextFunction, Request, Response } from 'express'
 import { container } from 'tsyringe'
 
-export default async (req: Request, res: Response) => {
+export default async (req: Request, res: Response, next: NextFunction) => {
     
-    const usecase = container.resolve<CreateUserUseCase>('CreateUserUseCase')
-    const response = await usecase.execute(req.body)
-
-    return res.created(response)
+    try {
+        const usecase = container.resolve<CreateUserUseCase>('CreateUserUseCase')
+        const response = await usecase.execute(req.body)
+    
+        return res.created(response)
+    } catch (error) {
+        next(error)
+    }
 }

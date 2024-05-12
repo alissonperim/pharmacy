@@ -11,10 +11,16 @@ export class CreateUserRepository implements ICreateUserRepository {
     async create(user: Partial<User>): Promise<User> {
         const { createdBy, updatedBy } = auditableData()
         Object.assign(user, { createdBy, updatedBy })
-        try {
-            return this.context.save(this.context.create(user))
-        } catch (error) {
-            throw new CreateException('Fail to create user')
-        }
+
+        const newUser = this.context.create(user)
+
+        const userExists = await this.context.exists({ where: [
+            { email: newUser.email },
+            { phoneNumber: newUser.phoneNumber }
+        ]})
+
+        if (userExists) throw new CreateException('User already exists')
+
+        return this.context.save(newUser)
     }
 }

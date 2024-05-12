@@ -20,7 +20,7 @@ export const HttpResponses = (_: Request, res: Response, next: NextFunction) => 
 
 export const HttpExceptions = (err, _: Request, res: Response, next: NextFunction) => {
     if (err instanceof BaseException) {
-        res.status(err.statusCode).json({ message: err.message })
+        res.status(err.statusCode).json({ message: err.message, code: err.code,})
         next()
     }
 
