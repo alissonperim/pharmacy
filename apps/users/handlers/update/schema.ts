@@ -30,3 +30,4 @@ export const pathParameter = yup.object().shape({
 })
 
 export type UpdateUserRequestParams = InferType<typeof updateUserSchema>
+export type UpdateUserPathParams = InferType<typeof pathParameter>

@@ -1,7 +1,7 @@
 import { DataSourceSingleton } from '@infra/datasourceSingleton'
 import { IUpdateUserRepository } from '@users/contracts/repositories'
 import { User } from '@users/domain/user'
-import { UpdateUserRequestParams } from '@users/handlers/update/schema'
+import { UpdateUserRequest } from '@users/useCases/update'
 import { injectable } from 'tsyringe'
 import { Repository } from 'typeorm'
 
@@ -9,7 +9,7 @@ import { Repository } from 'typeorm'
 export class UpdateUserRepository implements IUpdateUserRepository {
     private readonly context: Repository<User> = DataSourceSingleton.getRepositoy(User)
 
-    async update(params: UpdateUserRequestParams): Promise<User> {
+    async update(params: UpdateUserRequest): Promise<User> {
         const {
             address,
             birthDate,
@@ -18,10 +18,10 @@ export class UpdateUserRepository implements IUpdateUserRepository {
             name,
             phoneNumber,
             roles,
-            
+            id,
         } = params
 
-        const userUpdate = await this.context.update('a', {address, birthDate, email, lastName, name, phoneNumber, roles})
+        const userUpdate = await this.context.update(id, {address, birthDate, email, lastName, name, phoneNumber, roles})
 
         return userUpdate.raw
     }
