@@ -1,7 +1,7 @@
 import 'dotenv/config'
 import { Roles } from '@shared/contracts'
 import { PersonalData } from '@shared/domain'
-import { BeforeInsert, Column, Entity } from 'typeorm'
+import { BeforeInsert, BeforeUpdate, Column, Entity } from 'typeorm'
 import { DOMAIN, nanoIdGenerator } from '@shared/utils'
 
 @Entity('users')
@@ -19,5 +19,10 @@ export class User extends PersonalData {
     @BeforeInsert()
     generateId() {
         this.id =  nanoIdGenerator(DOMAIN.USER)
+    }
+
+    @BeforeUpdate()
+    beforeUpdate() {
+        this.updatedAt = new Date()
     }
 }

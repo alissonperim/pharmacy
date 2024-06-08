@@ -11,18 +11,21 @@ export class UpdateUserRepository implements IUpdateUserRepository {
 
     async update(params: UpdateUserRequest): Promise<User> {
         const {
-            address,
-            birthDate,
-            email,
-            lastName,
-            name,
-            phoneNumber,
-            roles,
             id,
         } = params
 
-        const userUpdate = await this.context.update(id, {address, birthDate, email, lastName, name, phoneNumber, roles})
+        let user = await this.context.findOne({ where: { id }})
+            
+        console.log('user', user)
+        if (!user) {
+            throw new Error('User not found')
+        }
 
-        return userUpdate.raw
+        user = {...user, ...params}
+
+        await this.context.save(user)
+
+
+        return user
     }
 }
